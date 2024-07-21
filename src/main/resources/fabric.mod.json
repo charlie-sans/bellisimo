@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "bellisimo",
 	"version": "${version}",
-	"name": "Bellisimo",
+	"name": "bellisimo",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
 		"Me!"
@@ -16,22 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			{
-				"value": "com.rainbow.Bellisimo",
-				"adapter": "kotlin"
-			}
+			"com.rainbow.Bellisimo"
 		],
 		"client": [
-			{
-				"value": "com.rainbow.BellisimoClient",
-				"adapter": "kotlin"
-			}
+			"com.rainbow.BellisimoClient"
 		],
 		"fabric-datagen": [
-			{
-				"value": "com.rainbow.BellisimoDataGenerator",
-				"adapter": "kotlin"
-			}
+			"com.rainbow.BellisimoDataGenerator"
 		]
 	},
 	"mixins": [
@@ -45,8 +36,7 @@
 		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.20.6",
 		"java": ">=21",
-		"fabric-api": "*",
-		"fabric-language-kotlin": "*"
+		"fabric-api": "*"
 	},
 	"suggests": {
 		"another-mod": "*"
