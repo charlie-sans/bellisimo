@@ -18,6 +18,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 public class ChatPeripheralBlock extends FacingBlock {
 
@@ -71,25 +72,5 @@ public class ChatPeripheralBlock extends FacingBlock {
 	@Override
 	public MapCodec<ChatPeripheralBlock> getCodec() {
 		return CODEC;
-	}
-
-	@Override
-	public BlockState rotate(BlockState state, BlockRotation rot) {
-		Direction dir = state.get(Properties.FACING);
-		// switch(dir) {
-		// 	case SOUTH:
-		// 		state.rotate(BlockRotation.NONE);
-		// 	case NORTH:
-		// 		state.rotate(BlockRotation.CLOCKWISE_90);
-		// 	case WEST:
-		// 		state.rotate(BlockRotation.NONE);
-		// 	case EAST:
-		// 		state.rotate(BlockRotation.NONE);
-		// 	case UP:
-		// 		state.rotate(BlockRotation.NONE);
-		// 	case DOWN:
-		// 		state.rotate(BlockRotation.CLOCKWISE_180);
-		// }
-		return state;
 	}
 }

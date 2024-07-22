@@ -1,10 +1,17 @@
 {
     "variants": {
-        "facing=north": { "model": "bellisimo:block/chat_peripheral", "x": 90},
-        "facing=east":  { "model": "bellisimo:block/chat_peripheral", "x": 90, "y": 90},
-        "facing=south": { "model": "bellisimo:block/chat_peripheral", "x": 90, "y":  180},
-        "facing=west":  { "model": "bellisimo:block/chat_peripheral", "x": 90, "y":  270},
-        "facing=up":    { "model": "bellisimo:block/chat_peripheral", "uvlock": true },
-        "facing=down":  { "model": "bellisimo:block/chat_peripheral", "x": 180, "uvlock": true }
+        "facing=north,open=false": { "model": "bellisimo:block/chat_peripheral", "x": 90},
+        "facing=east,open=false":  { "model": "bellisimo:block/chat_peripheral", "x": 90, "y": 90},
+        "facing=south,open=false": { "model": "bellisimo:block/chat_peripheral", "x": 90, "y":  180},
+        "facing=west,open=false":  { "model": "bellisimo:block/chat_peripheral", "x": 90, "y":  270},
+        "facing=up,open=false":    { "model": "bellisimo:block/chat_peripheral", "uvlock": true },
+        "facing=down,open=false":  { "model": "bellisimo:block/chat_peripheral", "x": 180, "uvlock": true },
+
+        "facing=north,open=true": { "model": "bellisimo:block/chat_peripheral_open", "x": 90},
+        "facing=east,open=true":  { "model": "bellisimo:block/chat_peripheral_open", "x": 90, "y": 90},
+        "facing=south,open=true": { "model": "bellisimo:block/chat_peripheral_open", "x": 90, "y":  180},
+        "facing=west,open=true":  { "model": "bellisimo:block/chat_peripheral_open", "x": 90, "y":  270},
+        "facing=up,open=true":    { "model": "bellisimo:block/chat_peripheral_open", "uvlock": true },
+        "facing=down,open=true":  { "model": "bellisimo:block/chat_peripheral_open", "x": 180, "uvlock": true }
     }
 }

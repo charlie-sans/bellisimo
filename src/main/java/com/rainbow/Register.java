@@ -22,14 +22,16 @@ public class Register {
     public static final Identifier CHAT_PERIPHERAL_ID = new Identifier(Bellisimo.MOD_NAMESPACE, "chat_peripheral");
     public static final ChatPeripheralBlock CHAT_PERIPHERAL_BLOCK = new ChatPeripheralBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.ANVIL));
     public static final Item CHAT_PERIPHERAL_ITEM = new BlockItem(CHAT_PERIPHERAL_BLOCK, new Item.Settings());
-    public static final ChatPeripheral CHAT = new ChatPeripheral();
     public static final BlockApiLookup<ChatPeripheral, Direction> CHAT_PERIPHERAL = BlockApiLookup.get(CHAT_PERIPHERAL_ID, ChatPeripheral.class, Direction.class);
 
     public void register_chat() {
         Registry.register(Registries.BLOCK, CHAT_PERIPHERAL_ID, CHAT_PERIPHERAL_BLOCK);
         Registry.register(Registries.ITEM, CHAT_PERIPHERAL_ID, CHAT_PERIPHERAL_ITEM);
         PeripheralLookup.get().registerForBlocks((world, pos, state, blockEntity, context) -> {
-            return CHAT;
+            Bellisimo.LOGGER.info(pos.toString());
+            Bellisimo.LOGGER.info(world.toString());
+            Bellisimo.LOGGER.info("New Perf -----------------------------------------------------------------------");
+            return new ChatPeripheral(world, pos);
         }, CHAT_PERIPHERAL_BLOCK);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
 		.register((itemGroup) -> itemGroup.add(CHAT_PERIPHERAL_ITEM));

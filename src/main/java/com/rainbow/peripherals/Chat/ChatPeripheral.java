@@ -4,6 +4,7 @@ import dan200.computercraft.api.lua.LuaFunction;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 
@@ -18,10 +19,13 @@ public class ChatPeripheral implements IPeripheral {
 
     private final Set<IComputerAccess> computers = new HashSet<>(1);
     public boolean open = false;
-    public World level;
-    public BlockPos pos;
+    
+    private World world;
+    private BlockPos pos;
 
-    public ChatPeripheral() {
+    public ChatPeripheral(World world, BlockPos pos) {
+        this.world = world;
+        this.pos = pos;
 		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, params) -> {
 			String chat_message = message.getContent().getString(); // get chat message
             String username = sender.getNameForScoreboard();
@@ -39,7 +43,12 @@ public class ChatPeripheral implements IPeripheral {
 
     @LuaFunction
     public void open() {
-        open = true;
+        world.setBlockState(pos, world.getBlockState(pos).with(ChatPeripheralBlock.OPEN, true));
+    }
+
+    @LuaFunction
+    public void close() {
+        world.setBlockState(pos, world.getBlockState(pos).with(ChatPeripheralBlock.OPEN, false));
     }
 
     // Every TestPeripheral instance is equivalent to every other test peripheral instance, since there is no state
@@ -59,5 +68,9 @@ public class ChatPeripheral implements IPeripheral {
 
     public void attach(IComputerAccess computer) {
         computers.add(computer);
+    }
+
+    public void detach(IComputerAccess computer) {
+        computers.remove(computer);
     }
 }
