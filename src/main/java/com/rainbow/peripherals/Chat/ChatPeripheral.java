@@ -4,17 +4,22 @@ import dan200.computercraft.api.lua.LuaFunction;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
+import net.minecraft.util.math.Position;
+import net.minecraft.world.World;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 import com.rainbow.Bellisimo;
+import com.rainbow.Register;
 
 public class ChatPeripheral implements IPeripheral {
 
-    public ChatPeripheralBlock block = null;
     private final Set<IComputerAccess> computers = new HashSet<>(1);
+    public boolean open = false;
+    public World level;
+    public BlockPos pos;
 
     public ChatPeripheral() {
 		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, params) -> {
@@ -30,6 +35,11 @@ public class ChatPeripheral implements IPeripheral {
     @Override
     public String getType() {
         return "chat_peripheral";
+    }
+
+    @LuaFunction
+    public void open() {
+        open = true;
     }
 
     // Every TestPeripheral instance is equivalent to every other test peripheral instance, since there is no state
