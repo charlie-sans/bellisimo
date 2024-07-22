@@ -1,6 +1,8 @@
 package com.rainbow;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,5 +19,10 @@ public class Bellisimo implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("initializing Bellisimo");
+
+		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, params) -> {
+			LOGGER.info(message.getContent().getString()); // TODO: make this do shit
+			return;
+		});
 	}
 }
