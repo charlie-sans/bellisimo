@@ -1,10 +1,12 @@
 package com.rainbow;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import dan200.computercraft.api.
 
 public class Bellisimo implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -21,8 +23,7 @@ public class Bellisimo implements ModInitializer {
 		LOGGER.info("initializing Bellisimo");
 
 		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, params) -> {
-			LOGGER.info(message.getContent().getString()); // TODO: make this do shit
-			return;
+			String chat_message = message.getContent().getString(); // TODO: make this do shit
 		});
 	}
 }
