@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=north": { "model": "bellisimo:block/chat_peripheral", "x": 90},
+        "facing=east":  { "model": "bellisimo:block/chat_peripheral", "x": 90, "y": 90},
+        "facing=south": { "model": "bellisimo:block/chat_peripheral", "x": 90, "y":  180},
+        "facing=west":  { "model": "bellisimo:block/chat_peripheral", "x": 90, "y":  270},
+        "facing=up":    { "model": "bellisimo:block/chat_peripheral", "uvlock": true },
+        "facing=down":  { "model": "bellisimo:block/chat_peripheral", "x": 180, "uvlock": true }
+    }
+}

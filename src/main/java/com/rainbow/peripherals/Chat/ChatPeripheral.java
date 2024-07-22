@@ -13,6 +13,7 @@ import com.rainbow.Bellisimo;
 
 public class ChatPeripheral implements IPeripheral {
 
+    public ChatPeripheralBlock block = null;
     private final Set<IComputerAccess> computers = new HashSet<>(1);
 
     public ChatPeripheral() {
