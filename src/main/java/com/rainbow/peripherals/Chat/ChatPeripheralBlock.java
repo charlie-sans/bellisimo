@@ -1,6 +1,12 @@
 package com.rainbow.peripherals.Chat;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nullable;
+
 import com.mojang.serialization.MapCodec;
+import com.rainbow.Bellisimo;
 
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -8,9 +14,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -24,6 +31,7 @@ public class ChatPeripheralBlock extends FacingBlock {
 
     public static final MapCodec<ChatPeripheralBlock> CODEC = createCodec(ChatPeripheralBlock::new);
 	public static final BooleanProperty OPEN = BooleanProperty.of("open");
+	public static final Map<BlockPos, ChatPeripheral> blocks = new HashMap<>();
 
     public ChatPeripheralBlock(Settings settings) {
         super(settings);
@@ -35,6 +43,11 @@ public class ChatPeripheralBlock extends FacingBlock {
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(Properties.FACING);
 		builder.add(OPEN);
+	}
+
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		blocks.put(pos, new ChatPeripheral(world, pos));
 	}
  
 	@Override

@@ -1,9 +1,14 @@
 package com.rainbow;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dan200.computercraft.shared.computer.core.ServerComputerRegistry;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
 
 public class Bellisimo implements ModInitializer {
@@ -16,6 +21,10 @@ public class Bellisimo implements ModInitializer {
     //public static final MinecraftServer server = MinecraftServer.;
     public static final Register register = new Register();
 
+	public static boolean do_say = true;
+
+	public static MinecraftServer SERVER;
+ 
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -25,5 +34,10 @@ public class Bellisimo implements ModInitializer {
 		LOGGER.info("initializing Bellisimo");
 
         register.register_chat();
+		register.register_command();
+
+		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
+			SERVER = server;
+		});
 	}
 }
