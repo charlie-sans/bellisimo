@@ -5,6 +5,7 @@ import com.rainbow.peripherals.Chat.ChatPeripheral;
 import com.rainbow.peripherals.Chat.ChatPeripheralBlock;
 
 import dan200.computercraft.api.peripheral.PeripheralLookup;
+import dan200.computercraft.api.ComputerCraftAPI;
 
 import static net.minecraft.server.command.CommandManager.*;
 
@@ -35,7 +36,7 @@ public class Register {
         Registry.register(Registries.ITEM, CHAT_PERIPHERAL_ID, CHAT_PERIPHERAL_ITEM);
         PeripheralLookup.get().registerForBlocks((world, pos, state, blockEntity, context) -> {
             if (ChatPeripheralBlock.blocks.get(pos) == null) {
-                ChatPeripheralBlock.blocks.put(pos, new ChatPeripheral(world, pos));
+                ChatPeripheralBlock.blocks.put(pos, new ChatPeripheral(world, pos, false));
             }
             return ChatPeripheralBlock.blocks.get(pos);
         }, CHAT_PERIPHERAL_BLOCK);

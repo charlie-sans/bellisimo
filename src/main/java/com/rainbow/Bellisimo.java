@@ -31,7 +31,7 @@ public class Bellisimo implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("initializing Bellisimo");
+		LOGGER.info("initializing the funny");
 
         register.register_chat();
 		register.register_command();
@@ -39,5 +39,7 @@ public class Bellisimo implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
 			SERVER = server;
 		});
+
+		LOGGER.info("the funny initialized");
 	}
 }

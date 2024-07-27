@@ -29,17 +29,16 @@ public class ChatPeripheral implements IPeripheral {
     
     private World world;
     private BlockPos pos;
+    private boolean pocket;
 
     private Integer id;
 
     Random rand = new Random();
 
-    public ChatPeripheral(World world, BlockPos pos) {
-		Bellisimo.LOGGER.info(pos.toString());
-		Bellisimo.LOGGER.info(world.toString());
-		Bellisimo.LOGGER.info("New Perf -----------------------------------------------------------------------");
+    public ChatPeripheral(World world, BlockPos pos, boolean pocket) {
         this.world = world;
         this.pos = pos;
+        this.pocket = pocket;
 		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, params) -> {on_message(message, sender, params);});
     }
 
@@ -65,13 +64,15 @@ public class ChatPeripheral implements IPeripheral {
     @LuaFunction
     public final void open() {
         open = true;
-        world.setBlockState(pos, world.getBlockState(pos).with(ChatPeripheralBlock.OPEN, true));
+        if (!pocket)
+            world.setBlockState(pos, world.getBlockState(pos).with(ChatPeripheralBlock.OPEN, true));
     }
 
     @LuaFunction
     public final void close() {
         open = false;
-        world.setBlockState(pos, world.getBlockState(pos).with(ChatPeripheralBlock.OPEN, false));
+        if (!pocket)
+            world.setBlockState(pos, world.getBlockState(pos).with(ChatPeripheralBlock.OPEN, false));
     }
 
     @LuaFunction

@@ -8,8 +8,10 @@ import javax.annotation.Nullable;
 import com.mojang.serialization.MapCodec;
 import com.rainbow.Bellisimo;
 
+import dan200.computercraft.shared.peripheral.modem.ModemShapes;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.state.property.Property;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;
@@ -47,9 +49,9 @@ public class ChatPeripheralBlock extends FacingBlock {
 
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		blocks.put(pos, new ChatPeripheral(world, pos));
+		blocks.put(pos, new ChatPeripheral(world, pos, false));
 	}
- 
+
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
 		Direction dir = state.get(Properties.FACING);
